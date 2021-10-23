@@ -32,7 +32,7 @@ jobs:
             cp target/currencyexchange-0.0.1-SNAPSHOT.jar /tmp/$DIRNAME
             echo "Copying artifact in /tmp/$DIRNAME";
       - store_artifacts:
-          path: /tmp
+          path: /tmp/DEPLOY*
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
