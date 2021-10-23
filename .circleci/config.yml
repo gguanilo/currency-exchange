@@ -30,7 +30,7 @@ jobs:
           name: Store Artifact
           command: |
             DATE=`date +%Y%m%d`;
-            DIRNAME=DIR-$USERNAME-$DATE;
+            DIRNAME=DIR-$DATE;
             [ -d $DIRNAME ] && rm -r $DIRNAME;
             mkdir /tmp/$DIRNAME;
             echo "Copying artifact in /tmp/$DIRNAME";
