@@ -22,10 +22,8 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-      - persist_to_workspace:
-         root: ./
-         paths:
-           - target/
+      - store_artifacts:
+          path: build/libs
       # Then run your tests!
       - run:
           name: Deploy
