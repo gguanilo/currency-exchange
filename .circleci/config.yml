@@ -22,10 +22,8 @@ jobs:
       - run:
           name: Build
           command: mvn -DskipTests clean package
-      - persist_to_workspace:
-         root: ./
-         paths:
-           - target/
+      - store_artifacts:
+          path: target/
       - run:
           name: Creating Dummy Artifacts
           command: |
