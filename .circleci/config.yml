@@ -22,8 +22,18 @@ jobs:
       - run:
           name: Build
           command: mvn -DskipTests clean package
+
+      - run:
+          name: Store Artifact
+          command: |
+            DATE=`date +%Y%m%d`;
+            DIRNAME=DIR-$USERNAME-$DATE;
+            [ -d $DIRNAME ] && rm -r $DIRNAME;
+            mkdir /tmp/$DIRNAME;
+            cp target/currencyexchange-0.0.1-SNAPSHOT.jar /tmp/$DIRNAME
+            echo "Copying artifact in /tmp/$DIRNAME";
       - store_artifacts:
-          path: target/currencyexchange-0.0.1-SNAPSHOT.jar
+          path: /tmp/$DIRNAME/currencyexchange-0.0.1-SNAPSHOT.jar
       - run:
           name: Creating Dummy Artifacts
           command: |
