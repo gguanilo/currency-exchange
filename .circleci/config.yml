@@ -27,13 +27,13 @@ jobs:
           name: Store Artifact
           command: |
             DATE=`date +%Y%m%d`;
-            DIRNAME=DIR-$USERNAME-$DATE;
+            DIRNAME=DEPLOY-$DATE;
             [ -d $DIRNAME ] && rm -r $DIRNAME;
             mkdir /tmp/$DIRNAME;
             cp target/currencyexchange-0.0.1-SNAPSHOT.jar /tmp/$DIRNAME
             echo "Copying artifact in /tmp/$DIRNAME";
       - store_artifacts:
-          path: /tmp/$DIRNAME/currencyexchange-0.0.1-SNAPSHOT.jar
+          path: /tmp
       - run:
           name: Creating Dummy Artifacts
           command: |
