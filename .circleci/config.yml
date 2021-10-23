@@ -27,14 +27,7 @@ jobs:
       - run:
           name: Deploy
           command: mvn test
-      - run:
-          name: Store Artifact
-          command: |
-            DATE=`date +%Y%m%d`;
-            DIRNAME=DIR-$USERNAME-$DATE;
-            [ -d $DIRNAME ] && rm -r $DIRNAME;
-            mkdir /tmp/$DIRNAME;
-            echo "Copying artifact in /tmp/$DIRNAME";
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
