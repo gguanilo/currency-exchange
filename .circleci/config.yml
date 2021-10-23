@@ -21,10 +21,11 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
-      - store_artifacts:
-          path: build/libs
-          destination: jarapp.jar
+          command: mvn -DskipTests clean package
+      - persist_to_workspace:
+         root: ./
+         paths:
+           - target/
       - run:
           name: Creating Dummy Artifacts
           command: |
