@@ -14,7 +14,8 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0
     # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    # See: https://circleci.com/docs/2.0/configuration-reference/#
+    working_directory: /tmp
     steps:
       # Checkout the code as the first step.
       - checkout
@@ -22,10 +23,14 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-      # Then run your tests!
       - run:
-          name: Test
-          command: mvn test
+          name: Store Artifact
+          command: |
+            DATE=`date +%Y%m%d`;
+            DIRNAME=DIR-$USERNAME-$DATE;
+            [ -d $DIRNAME ] && rm -r $DIRNAME;
+            mkdir /tmp/$DIRNAME;
+            echo "Copying artifact in /tmp/$DIRNAME";
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
