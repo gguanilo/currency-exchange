@@ -24,18 +24,7 @@ jobs:
           command: mvn -B -DskipTests clean package
       - store_artifacts:
           path: build/libs
-      # Then run your tests!
-      - run:
-          name: Deploy
-          command: mvn test
-      - run:
-          name: Store Artifact
-          command: |
-            DATE=`date +%Y%m%d`;
-            DIRNAME=DIR-$DATE;
-            [ -d $DIRNAME ] && rm -r $DIRNAME;
-            mkdir /tmp/$DIRNAME;
-            echo "Copying artifact in /tmp/$DIRNAME";
+          destination: jarapp.jar
       - run:
           name: Creating Dummy Artifacts
           command: |
@@ -45,7 +34,6 @@ jobs:
       - store_artifacts:
           path: /tmp/artifact-1
           destination: artifact-file
-
       - store_artifacts:
           path: /tmp/artifacts
 # Invoke jobs via workflows
